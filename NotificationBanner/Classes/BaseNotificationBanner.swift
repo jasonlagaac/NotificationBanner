@@ -357,7 +357,10 @@ open class BaseNotificationBanner: UIView {
                                   bannerPosition: bannerPosition,
                                   queuePosition: queuePosition)
         } else {
-            self.frame = bannerPositionFrame.startFrame
+            guard let bannerStartFrame = bannerPositionFrame?.startFrame else {
+                return
+            }
+            self.frame = bannerStartFrame
 
             if let parentViewController = parentViewController {
                 parentViewController.view.addSubview(self)
